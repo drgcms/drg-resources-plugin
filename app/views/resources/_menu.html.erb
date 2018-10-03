@@ -1,0 +1,21 @@
+<!-- Create DRG CMS field in the view -->
+<% 
+  form = {'name' => 'selected_date', 'html' => { 'value' => params[:selected_date], 'placeholder' => 'Select week' }}
+  date_picker = DrgcmsFormFields::DatePicker.new(parent, {}, form).render
+%>
+
+<ul class="action-menu resources_menu">
+  <li>
+     <%= date_picker.html.html_safe %>
+     <%= select(nil, 'category', DcBigTable.choices4('resource-categories', nil), { selected: params[:category]} ) %>
+  </li>
+
+  <li class="dc-link dc-animate"> 
+     <%= dc_link_to 'Resources', 'table', {controller: 'cmsedit', table: 'resource'}, target: 'iframe_edit' %> 
+  </li>
+</ul>
+
+<%= javascript_tag(date_picker.js) %>
+<hr class='hr-separator'>
+
+<%= dc_iframe_edit(nil) %>

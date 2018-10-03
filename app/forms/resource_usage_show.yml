@@ -1,0 +1,14 @@
+## DRG Form
+---
+extend: resource_usage
+title: Resource reservation
+
+form:
+  actions: 
+    5: 
+      type: delete
+      caption: Delete reservation
+      params:
+        before-delete: can_delete_resource
+        after-delete: return_to parent.reload
+        

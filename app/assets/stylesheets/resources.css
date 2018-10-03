@@ -1,0 +1,73 @@
+.action-menu {
+  margin: 0;
+}
+.action-menu li {
+  display: inline;
+  position: relative;
+  list-style: none;
+  margin-right: 4px;
+}
+
+.resources_menu #record_selected_date {
+  width: 120px; 
+  height: 2rem;
+  display: inline;
+  margin-bottom: 0;
+}
+
+.resources_menu #category {
+  width: 120px; 
+  height:inherit;
+  font-size: 1.2em;
+  padding: 4px 0px;
+  display: inline;
+  margin: 0 0 0 6px;
+}
+
+.resources-table .th {
+  width: 12%;
+  border: 1px solid #ccc;
+  border-right: none;
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #ccc;
+}
+.resources-table .td {
+  width: 12%;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-right: none;
+  min-height: 50px;
+  vertical-align: central;
+  padding: 2px 0;
+}
+
+.resources-table .th.name, .resources-table .td.name {
+  width: 16%;
+  font-weight: bold;
+
+}
+
+.resources-table .td.name {
+  background-color: #ffe;  
+}
+
+.resources-table .td div {
+  background-color: #eee;
+  padding: 2px;
+  border-top: 1px solid #ddd;  
+  border-bottom: 1px solid #ddd;  
+  margin: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resources-table .td div:hover {
+  cursor: pointer;
+}
+
+.resources-table {
+  border-right: 1px solid #ccc;
+}

@@ -1,0 +1,53 @@
+## DRG Form
+table: resource
+
+index:
+  filter: id as text_field, name
+  actions: standard
+  
+result_set:
+  actions: standard
+
+#  actions: 
+#    1:
+#      type: link
+#      controller: controller_name
+#      action: action_name
+#      table: table_name
+#      form_name: form_name
+#      target: target      
+#      method: (get),put,post      
+  columns:
+    10:  
+      name: name
+    20:  
+      name: category
+    30:  
+      name: description
+      width: 60%
+    40: 
+      name: active
+      eval: dc_icon4_boolean
+
+form:
+  title:
+    field: name
+  actions: standard
+
+  fields:
+    10:
+      name: name
+      type: text_field
+      size: 30
+    20:
+      name: description
+      type: text_field
+      size: 70
+    30:
+      name: category
+      type: select
+      eval: dc_big_table 'resource-categories'
+    40:
+      name: active
+      type: check_box
+  

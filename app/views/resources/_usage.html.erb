@@ -1,0 +1,30 @@
+
+<div class='resources-table' width='99%'>
+  <div class="row date">
+    <div class="th name"></div>
+    <%# date = date_from; while date < date_to  %>
+    <% date_from.step(date_to, 1) do |date| %>
+      <div class="th">
+        <%= I18n.t('date.day_names')[date.wday] %><br/><%= date.strftime('%d.%m.') %>
+      </div>
+    <% end %>
+  </div>
+ 
+  <div class="row resource">
+    <% for resource in resources %>
+      <div class="td name">
+        <%= resource.name %>
+      </div>
+      <% date_from.step(date_to, 1) do |date| %>
+      <div class="td usage">
+        <%= dc_link_to(nil, 'plus-square lg', { title: 'New reservation', 
+              controller: :cmsedit, action: :new, target: :iframe_edit,
+              table: :resource_usage, resource_id: resource.id, 
+              current_date: date.to_s}, {class: 'dc-link-img'} )
+        %>
+        <%= render_usages(usages[resource.id], date) %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

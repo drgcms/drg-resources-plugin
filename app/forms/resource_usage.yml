@@ -1,0 +1,43 @@
+## DRG Form
+---
+table: resource_usage
+title: Create new resource reservation
+
+form:
+  actions: 
+    1: 
+      type: script
+      caption: Back
+      js: parent.location.href=parent.location.href
+    5: 
+      type: submit
+      caption: Save
+      params:
+        after-save: return_to parent.reload
+
+  fields:
+    10:
+      name: resource_id
+      type: readonly
+      eval: dc_name4_id,resource,name      
+    20:
+      name: description
+      type: text_field
+      html:
+        size: 50
+    30:
+      name: time_from
+      type: datetime_picker
+      options:
+        step: 30
+    40:
+      name: time_to
+      type: datetime_picker
+      options:
+        step: 30
+# for displaying created by name      
+    50:
+      name: dc_user_id
+      type: readonly
+      eval: dc_name4_id,dc_user,name
+        
