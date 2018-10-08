@@ -1,4 +1,3 @@
-#encoding: utf-8
 #--
 # Copyright (c) 2018+ Damjan Rems
 #
@@ -53,7 +52,7 @@ class ResourceUsage
   belongs_to :resource
   belongs_to :dc_user
   
-  index resource_id: 1
+  index resource_id: 1, time_from: 1
    
   validates :time_from,   presence: true
   validates :time_to,     presence: true
@@ -68,11 +67,11 @@ def free_time_validations
   errors.add(:time_from, "should be less then end time!") if time_from >= time_to
   errors.add(:time_from, "is less then current time!") if time_from <= Time.now
   if ResourceUsage.where(resource_id: resource_id).and({"$or" => [ 
-      {"$and" => [ {:time_from.lt  => time_from}, {:time_to.gt  => time_from} ] },
-      {"$and" => [ {:time_from.lt  => time_to},   {:time_to.gt  => time_to} ] },
-      {"$and" => [ {:time_from.gte => time_from}, {:time_to.lte => time_to} ] }
-      ] }).exists?
-    errors.add(:time_from, "Resource already taken!")
+       {"$and" => [ {:time_from.lt  => time_from}, {:time_to.gt  => time_from} ] },
+       {"$and" => [ {:time_from.lt  => time_to},   {:time_to.gt  => time_to} ] },
+       {"$and" => [ {:time_from.gte => time_from}, {:time_to.lte => time_to} ] }
+       ] }).exists?
+     errors.add(:time_from, "Resource already taken!")
   end                                       
 end
 

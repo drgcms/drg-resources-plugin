@@ -1,6 +1,5 @@
-#encoding: utf-8
 #--
-# Copyright (c) 2014+ Damjan Rems
+# Copyright (c) 2018+ Damjan Rems
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -25,13 +24,20 @@
 module DrgcmsControls::ResourceUsageControl
 
 ######################################################################
-# Called when new reservation is created.
+# Check if new document can be added
 ######################################################################
-def dc_new_record()
+def dc_before_new()
   unless ( dc_user_has_role('resources-reservation') or dc_user_has_role('admin') )
+    params[:return_to] = 'parent.reload'
     flash[:error] = 'No permission for adding reservations!'
     return false
   end
+end
+
+######################################################################
+# Called when new reservation is created.
+######################################################################
+def dc_new_record()
   @record.resource_id = params[:resource_id]
   @record.dc_user_id  = session[:user_id]
   @record.time_from   = params[:current_date]

@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2014+ Damjan Rems
+# Copyright (c) 2018+ Damjan Rems
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -22,13 +22,13 @@
 #++
 
 ########################################################################
-#
+# Resources usage renderer.
 ########################################################################
 class ResourcesRenderer < DcRenderer
 include DcApplicationHelper
   
 ########################################################################
-# 
+# Render resources usage.
 ########################################################################
 def resources_usage
   time = Date.parse(@parent.params[:selected_date]) rescue DateTime.now
@@ -47,12 +47,12 @@ def resources_usage
 end
 
 ########################################################################
-# default renderer method will render application menu and usage table below.
+# default renderer method will render application menu and usage table.
 ########################################################################
 def default
   html = @parent.render(partial: 'resources/menu', formats: [:html], locals: { parent: @parent })
-  html << dc_flash_messages
-  html << resources_usage#.html_safe
+  html << dc_flash_messages <<
+          resources_usage
 end
 
 end

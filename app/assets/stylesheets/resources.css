@@ -40,7 +40,7 @@
   border-right: none;
   min-height: 50px;
   vertical-align: central;
-  padding: 2px 0;
+  padding: 0;
 }
 
 .resources-table .th.name, .resources-table .td.name {
@@ -57,8 +57,7 @@
   background-color: #eee;
   padding: 2px;
   border-top: 1px solid #ddd;  
-  border-bottom: 1px solid #ddd;  
-  margin: 2px 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -70,4 +69,11 @@
 
 .resources-table {
   border-right: 1px solid #ccc;
+  
+}.resources-table .usage i {
+  padding: 4px;
+}
+
+.resources-table .row {
+  max-width: none;
 }
