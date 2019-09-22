@@ -50,7 +50,8 @@
 }
 
 .resources-table .td.name {
-  background-color: #ffe;  
+  background-color: #ccc;
+  padding: 4px;
 }
 
 .resources-table .td div {

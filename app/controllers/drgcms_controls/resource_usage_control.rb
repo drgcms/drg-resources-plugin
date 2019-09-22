@@ -24,7 +24,7 @@
 module DrgcmsControls::ResourceUsageControl
 
 ######################################################################
-# Check if new document can be added
+# Will check if new document can be added.
 ######################################################################
 def dc_before_new()
   unless ( dc_user_has_role('resources-reservation') or dc_user_has_role('admin') )
@@ -35,7 +35,8 @@ def dc_before_new()
 end
 
 ######################################################################
-# Called when new reservation is created.
+# Called when new reservation is created. Fill some default values in
+# the form.
 ######################################################################
 def dc_new_record()
   @record.resource_id = params[:resource_id]
@@ -45,7 +46,7 @@ def dc_new_record()
 end
 
 ######################################################################
-# check if it's OK to delete reservation document.
+# Check if it's OK to delete reservation document.
 ######################################################################
 def can_delete_resource()
 # reservation's time is up  
@@ -55,7 +56,7 @@ def can_delete_resource()
   end
 # not everyone can delete reservation
   unless (@record.dc_user_id == session[:user_id] or dc_user_has_role('admin') )
-    flash[:error] = 'Only owner or administrator can delete document!'
+    flash[:error] = 'Only owner or administrator can delete reservation!'
     return false
   end  
 end

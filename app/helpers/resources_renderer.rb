@@ -28,19 +28,20 @@ class ResourcesRenderer < DcRenderer
 include DcApplicationHelper
   
 ########################################################################
-# Render resources usage.
+# Render resources usage table.
 ########################################################################
 def resources_usage
+# define currently selected week 
   time = Date.parse(@parent.params[:selected_date]) rescue DateTime.now
   date_from = time.beginning_of_week
   date_to   = time.end_of_week
-  
+# scoupe selected resources and usage documents  
   resources = Resource.where(category: @parent.params[:category], active: true).order_by(name: 1).to_a
   ids = resources.inject([]) { |r,e| r << e.id }
   usages = ResourceUsage.where(:resource_id.in => ids)
            .and(:time_from.lt => date_to, :time_to.gt => date_from)
            .order_by(resource_id: 1, time_from: 1).group_by(&:resource_id)
-#
+# render rails usage views
   @parent.render(partial: 'resources/usage', formats: [:html], 
                  locals: { date_from: date_from, date_to: date_to, 
                            resources: resources, usages: usages }) 
@@ -51,8 +52,8 @@ end
 ########################################################################
 def default
   html = @parent.render(partial: 'resources/menu', formats: [:html], locals: { parent: @parent })
-  html << dc_flash_messages <<
-          resources_usage
+# render error messages and usage table
+  html << dc_flash_messages << resources_usage
 end
 
 end

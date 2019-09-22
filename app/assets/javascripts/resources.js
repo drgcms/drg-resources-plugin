@@ -42,6 +42,11 @@ $('#category').bind('change', function() {
   *******************************************************************/
   $('.resources-table .usage div').on('click',function(e) {
     var url = e.target.getAttribute("data-url");
-    $('#iframe_edit').attr('src', url);    
+//    $('#iframe_edit').attr('src', url);  
+    $('#iframe_edit').bPopup({
+      content:'iframe', //'ajax', 'iframe' or 'image'
+      contentContainer: '.content',
+      loadUrl: url
+    });
   });
 });
