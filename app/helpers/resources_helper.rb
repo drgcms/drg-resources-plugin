@@ -36,7 +36,7 @@ def render_usages(resource_usages, date)
       next if time1 == time2
 # url for displaying detail data      
       url   = "/cms/#{usage.id}/edit?form_name=resource_usage_show&table=resource_usage"
-      html << %Q[<div title="Click to view" data-url="#{url}"><b>#{time1} - #{time2}</b><br>#{usage.description}</div>]
+      html << %Q[<div class="resource-usage" title="Click to view" data-url="#{url}"><b>#{time1} - #{time2}</b><br>#{usage.description}</div>]
     end
   end
   html.html_safe

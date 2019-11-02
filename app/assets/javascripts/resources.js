@@ -38,15 +38,11 @@ $('#category').bind('change', function() {
 });
 
   /*******************************************************************
-  * Popup CMS edit menu option clicked
+  * Resources: View or delete resource resetvation.
   *******************************************************************/
-  $('.resources-table .usage div').on('click',function(e) {
-    var url = e.target.getAttribute("data-url");
-//    $('#iframe_edit').attr('src', url);  
-    $('#iframe_edit').bPopup({
-      content:'iframe', //'ajax', 'iframe' or 'image'
-      contentContainer: '.content',
-      loadUrl: url
-    });
+  $('.resource-usage').on('click',function(e) {
+    var url = $(this).data('url');
+    $('#iframe_edit').attr('src', url);
+  
   });
 });
